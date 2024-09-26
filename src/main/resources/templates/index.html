@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DF 캐릭터 검색</title>
+<style>
+* {
+	box-sizing: border-box;
+	margin: 0;
+}
+
+body {
+	font-family: Arial, sans-serif;
+	margin: 50px;
+}
+
+label {
+	margin: 10px 0 5px;
+}
+
+select, input[type="text"] {
+	padding: 8px;
+	margin-bottom: 20px;
+	box-sizing: border-box;
+}
+
+button {
+	padding: 10px 15px;
+	background-color: #4CAF50;
+	color: white;
+	border: none;
+	cursor: pointer;
+}
+
+button:hover {
+	background-color: #45a049;
+}
+
+#searchSection {
+	position: fixed; /* 화면에 고정된 위치 */
+	top: 0;
+	left: 0;
+	width: 100%;
+	background-color: white;
+	border-bottom: 2px solid #ddd;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+	padding: 10px;
+	z-index: 1000; /* 다른 콘텐츠 위에 표시되도록 설정 */
+}
+
+#resultSection {
+	margin: 0px 200px 0px 200px;
+	width: auto;
+	display: grid;
+	grid-template-columns: repeat(5, 1fr); /* 5개의 동일한 열 */
+	gap: 10px; /* 각 그리드 항목 사이의 간격 */
+}
+
+.charImg {
+	display: inline-block;
+	border: #45a049 1px solid;
+	border-radius: 20px;
+}
+
+#logo {
+	margin-bottom: 30px;
+}
+
+.charInfo {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	gap: 10px;
+}
+
+.adventureName {
+	color: #2b6e2f;
+	font-size: 13px;
+}
+
+.rank {
+	color: #034607;
+	background-color: #55e242;
+	width: 100%;
+	text-align: center;
+	padding: 5px;
+	border-bottom-left-radius: 20px;
+	border-bottom-right-radius: 20px;
+}
+
+.charImgs {
+	width: 100%;
+}
+
+.charJopAndServer {
+	display: flex;
+	flex-direction: column;
+	margin: 10px 10px 0px 10px;
+	place-content: space-between;
+	gap: 5px;
+}
+
+.charServer {
+	background-color: #b1edb3;
+	width: 25%;
+	text-align: center;
+	border-radius: 10px;
+	font-size: 13px;
+}
+
+.jobAndLevel {
+	display: flex;
+	width: fit-content;
+	background-color: #37ed3d;
+	border-radius: 10px;
+	font-size: 13px;
+	align-items: center;
+	padding-left: 3px;
+	padding-right: 3px;
+	gap: 10px;
+	background-color: #37ed3d;
+}
+
+.level {
+	color: #034607;
+}
+
+.guildName {
+	color: #ceb301;
+	font-size: 13px;
+}
+
+#pagingButtonAndResult {
+	position: relative;
+	top: 150px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+#pagination {
+	margin-bottom: 50px;
+}
+.page-button.active {
+    background-color:white; /* 클릭된 버튼 색상 */
+    color: #4CAF50;
+}
+</style>
+</head>
+<body>
+	<div id="searchSection">
+		<h1 id="logo">Dungeon & Fighter</h1>
+		<form id="searchForm">
+			<select id="server" name="server" required>
+				<option value="" disabled selected>서버 선택</option>
+				<option value="all">전체</option>
+				<!-- 필요에 따라 서버 목록 추가 -->
+			</select> 
+			<input type="text" id="character" name="character" placeholder="캐릭터 이름 입력" required>
+			<button type="submit">검색</button>
+		</form>
+	</div>
+	
+	<div id="pagingButtonAndResult">
+		<div id="pagination"></div> <!-- 페이징 버튼들이 여기에 표시됨 -->
+		<div id="resultSection"></div>
+	</div>
+	
+	<script type="text/javascript" src="/js/search_character.js"></script>
+	<script type="text/javascript" src="/js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,2 @@
+searchCharacters();
+getAllServerLists();
