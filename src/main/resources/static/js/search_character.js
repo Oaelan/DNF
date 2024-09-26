@@ -6,22 +6,14 @@ function searchCharacters() {
 		// 캐릭터 서버 및 캐릭터 이름 가져오기
 		let server = document.getElementById('server').value;
 		let characterName = document.getElementById('character').value;
-
-		// URL 인코딩된 쿼리 문자열 생성 (서버와 캐릭터 이름 전송)
-		let queryString = new URLSearchParams({
-			server: server,
-			characterName: characterName,
-			page: 1 // 첫 번째 페이지로 시작
-		}).toString();
+		let url = `/dnf/api/rest/search?server=${encodeURIComponent(server)}&characterName=${encodeURIComponent(characterName)}`;
 
 		// 서버로 fetch 요청 (POST 요청)
-		fetch(`/dnf/api/rest/search`, {
-			method: 'POST',
+		fetch(url, {
+			method: 'GET',
 			headers: {
-				'Content-Type': 'application/x-www-form-urlencoded',
 				'Accept': 'application/json'
-			},
-			body: queryString // body에 쿼리 문자열 전달
+			}
 		})
 		.then(response => {
 			if (!response.ok) {
@@ -47,25 +39,19 @@ function searchCharacters() {
 }
 
 function getCharterInfo(page) {
+	
 	// 캐릭터 서버 및 캐릭터 이름을 입력 필드에서 가져옴
 	let server = document.getElementById('server').value;
 	let characterName = document.getElementById('character').value;
+	let url = `/dnf/api/rest/search?server=${encodeURIComponent(server)}&characterName=${encodeURIComponent(characterName)}&page=${encodeURIComponent(page)}`;
 
-	// URL 인코딩된 쿼리 문자열 생성 (페이지 번호 포함)
-	let queryString = new URLSearchParams({
-		server: server,
-		characterName: characterName,
-		page: page // 클릭된 페이지 번호로 요청
-	}).toString();
-
+	
 	// 서버로 fetch 요청 (POST 요청)
-	fetch(`/dnf/api/rest/search`, {
-		method: 'POST',
+	fetch(url, {
+		method: 'GET',
 		headers: {
-			'Content-Type': 'application/x-www-form-urlencoded',
 			'Accept': 'application/json'
 		},
-		body: queryString // body에 쿼리 문자열 전달
 	})
 	.then(response => {
 		if (!response.ok) {

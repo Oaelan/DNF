@@ -48,7 +48,7 @@ public class Dnf_Api_Controller {
     }
     
     // 캐릭터 검색 엔드포인트
-    @PostMapping("/search")
+    @GetMapping("/search")
     public Mono<ResponseEntity<Map<String, Object>>> searchChar(
             @RequestParam String server,
             @RequestParam String characterName,
